@@ -89,16 +89,16 @@ export default function Home() {
     <div style={{backgroundColor: '#fff', height: '50vh', padding: '100px' }}>
       <Stack direction={{ xs: 'column', sm: 'row' }} style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }} spacing={10}>
         <Stack spacing={2} style={{ width: '40%', textAlign: 'justify' }}>
-          <Typography variant={'h3'}>¿What's Jalo?</Typography>
+          <Typography variant={'h3'}>¿What&apos;s Jalo?</Typography>
           <br/>
           <Typography>
-            A mobile application focused on young people, dedicated to social planning or organizing social outings with friends. This app offers the fastest and easiest-to-use outing organization platform on the market. By using artificial intelligence tools, it suggests places, events, and friends to go out with based on users' preferences.
+            A mobile application focused on young people, dedicated to social planning or organizing social outings with friends. This app offers the fastest and easiest-to-use outing organization platform on the market. By using artificial intelligence tools, it suggests places, events, and friends to go out with based on users&apos; preferences.
           </Typography>
           <Typography>
-            It promotes going out with friends, setting aside virtual life, and empowering people's physical adventures with the help of technology.
+            It promotes going out with friends, setting aside virtual life, and empowering people&apos;s physical adventures with the help of technology.
           </Typography>
           <Typography>
-            This application will be heavily equipped with artificial intelligence features that will take the app's core algorithm to the next level.
+            This application will be heavily equipped with artificial intelligence features that will take the app&apos;s core algorithm to the next level.
           </Typography>
         </Stack>
         <Box style={{ width: '40%' }}>
