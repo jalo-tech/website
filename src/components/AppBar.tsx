@@ -1,132 +1,133 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
+import {makeStyles} from "@mui/styles";
+import {
+    Button, Divider,
+    Drawer,
+    IconButton,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemText, Stack, TextField,
+    Theme,
+    Typography,
+    useTheme,
+} from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu';
+import Box from "@mui/material/Box";
+import {useMediaQuery} from "@mui/system";
+import SearchIcon from "@mui/icons-material/Search";
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const useStyles = makeStyles((theme: Theme) => ({
+    appBar: {
+        backgroundColor: theme.palette.primary.main,
+        borderBottom: '1px solid rgba(0, 0, 0, 0.5)',
+        '&:hover': {
+            // backgroundColor: 'rgba(255, 255, 255, 0.3)',
+        }
+    },
+    logo: {
+        fontFamily: "Delius Swash Caps",
+        fontWeight: "bold",
+        fontStyle: 'normal',
+        fontSize: '25px',
+    },
+    textInput: {
+        width: '500px',
+    }
+}));
+
+const drawerWidth = 240;
+const navItems = ['Home', 'About', 'Contact'];
 
 function TopBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+    const [mobileOpen, setMobileOpen] = React.useState(false);
+    const classes = useStyles();
+    const theme = useTheme();
+    const isMd = useMediaQuery(theme.breakpoints.up('md'));
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
+    const handleDrawerToggle = () => {
+        setMobileOpen((prevState) => !prevState);
+    };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+    const drawer = (
+        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+            <Typography variant="h6" sx={{ my: 2 }} className={classes.logo}>
+                Jalo
+            </Typography>
+            <Divider />
+            <List>
+                {navItems.map((item) => (
+                    <ListItem key={item} disablePadding>
+                        <ListItemButton sx={{ textAlign: 'center' }}>
+                            <ListItemText primary={item} />
+                        </ListItemButton>
+                    </ListItem>
+                ))}
+            </List>
+        </Box>
+    );
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+    return <>
+        <AppBar component="nav" elevation={0} className={classes.appBar}>
+            <Toolbar variant={'regular'} sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                    edge="start"
+                    onClick={handleDrawerToggle}
+                    sx={{ mr: 2, display: { md: 'none', xs: 'block' } }}
+                >
+                    <MenuIcon />
+                </IconButton>
+                <Typography
+                    variant="h6"
+                    className={classes.logo}
+                >
+                    Jalo
+                </Typography>
+                <Stack direction={'row'}>
 
-  return (
-    <AppBar elevation={0} position="fixed" style={{ borderBottom: '1px solid #000', backgroundColor: 'none' }}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <img src='/logo.svg' alt='logo' style={{ width: '40px' }}/>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
+                </Stack>
+                <Box>
+                    <TextField
+                        sx={{ display: { xs: 'none', md: 'block' } }}
+                        InputProps={{
+                            startAdornment: <SearchIcon />,
+                            className: classes.textInput,
+                        }}
+                        size={'small'}
+                        variant={'outlined'}
+                        placeholder={'Busca'}
+                        name={'search'}
+                    />
+                </Box>
+                <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                    {navItems.map((item) => (
+                        <Button key={item} color={'secondary'}>
+                            {item}
+                        </Button>
+                    ))}
+                </Box>
+            </Toolbar>
+        </AppBar>
+        <nav>
+            <Drawer
+                variant="temporary"
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+                ModalProps={{
+                    keepMounted: true, // Better open performance on mobile.
+                }}
+                sx={{
+                    display: { xs: 'block', sm: 'none' },
+                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'black', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
-  );
+                {drawer}
+            </Drawer>
+        </nav>
+    </>;
 }
 export default TopBar;

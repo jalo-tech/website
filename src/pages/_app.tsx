@@ -1,22 +1,11 @@
-import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-
-const theme = createTheme({
-  components: {
-    MuiAppBar: {
-      styleOverrides: {
-        root: {
-          backgroundColor: '#fff',
-        },
-      },
-    },
-  },
-});
-
+import { ThemeProvider } from '@mui/material/styles';
+import theme from "@/components/Theme";
+import {CssBaseline} from "@mui/material";
 
 export default function App({ Component, pageProps }: AppProps) {
   return <ThemeProvider theme={theme}>
+    <CssBaseline />
     <Component {...pageProps} />
   </ThemeProvider>
 }
