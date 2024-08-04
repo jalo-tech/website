@@ -57,7 +57,8 @@ const theme = createTheme({
                     fontWeight: 'bold',
                     borderRadius: '50px',
                     minWidth: '100px',
-                    padding: '10px 30px',
+                    paddingLeft: '15px',
+                    paddingRight: '15px',
                     ...(ownerState.variant === 'contained' &&
                         ownerState.color === 'secondary' && {
                             color: '#fff',
@@ -70,13 +71,14 @@ const theme = createTheme({
                 root: {
                     '& .MuiOutlinedInput-root': {
                         '& fieldset': {
+                            // border: '2px solid rgba(255, 255, 255, 0.5)',
                             borderRadius: '50px'
                         },
                         '&:hover fieldset': {
-                            borderColor: 'rgba(0, 0, 0, 0.5)', // Color del borde al pasar el ratón por encima
+                            borderColor: 'rgba(255, 255, 255, 0.5)', // Color del borde al pasar el ratón por encima
                         },
                         '&.Mui-focused fieldset': {
-                            borderColor: 'rgba(0, 0, 0, 0.7)', // Color del borde cuando el TextField está enfocado
+                            borderColor: 'rgba(255, 255, 255, 0.7)', // Color del borde cuando el TextField está enfocado
                         },
                     },
                 },

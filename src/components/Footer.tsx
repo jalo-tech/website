@@ -19,7 +19,6 @@ const Footer = () => {
         <Box className={classes.container}>
             <Container>
                 <Stack spacing={2}>
-                    <Box>Footer</Box>
                     <Toolbar variant={'regular'}>
                         <Typography sx={{ flexGrow: 1 }}>
                             Jalo Tech S.A.S © 2024

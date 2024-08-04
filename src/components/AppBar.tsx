@@ -12,20 +12,28 @@ import {
     ListItemText, Stack, TextField,
     Theme,
     Typography,
+    useScrollTrigger,
     useTheme,
 } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import Box from "@mui/material/Box";
 import {useMediaQuery} from "@mui/system";
 import SearchIcon from "@mui/icons-material/Search";
+import Download from "@mui/icons-material/Download";
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) => ({
     appBar: {
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: '#000',
         borderBottom: '1px solid rgba(0, 0, 0, 0.5)',
+        color: '#fff',
         '&:hover': {
             // backgroundColor: 'rgba(255, 255, 255, 0.3)',
         }
+    },
+    appBarActive: {
+        backgroundColor: '#111',
+        color: '#fff',
     },
     logo: {
         fontFamily: "Delius Swash Caps",
@@ -34,18 +42,35 @@ const useStyles = makeStyles((theme: Theme) => ({
         fontSize: '25px',
     },
     textInput: {
-        width: '500px',
+        width: '35vw',
+        color: '#fff',
+        '& fieldset': {
+            border: '1px solid rgba(255, 255, 255, 0.4)',
+            borderRadius: '50px'
+        },
+    },
+    textInputRoot: {
     }
 }));
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+const navItems = ['Inicio', 'Acerca de', 'Contacto'];
 
-function TopBar() {
+interface ElevationScrollProps {
+    window?: () => Window;
+}
+
+function TopBar({ window }: ElevationScrollProps) {
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const classes = useStyles();
     const theme = useTheme();
     const isMd = useMediaQuery(theme.breakpoints.up('md'));
+
+    const trigger = useScrollTrigger({ 
+        disableHysteresis: true,
+        threshold: 0,
+        target: window ? window() : undefined,
+    });
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
@@ -70,8 +95,10 @@ function TopBar() {
     );
 
     return <>
-        <AppBar component="nav" elevation={0} className={classes.appBar}>
-            <Toolbar variant={'regular'} sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <AppBar component="nav" elevation={trigger ? 4 : 0} className={clsx(classes.appBar, {
+            [classes.appBarActive]: trigger,
+        })}>
+            <Toolbar variant={'regular'} sx={{ display: 'flex', justifyContent: 'space-between', margin: { md: '0 100px', sm: '0' } }}>
                 <IconButton
                     color="inherit"
                     aria-label="open drawer"
@@ -87,15 +114,15 @@ function TopBar() {
                 >
                     Jalo
                 </Typography>
-                <Stack direction={'row'}>
-
-                </Stack>
                 <Box>
                     <TextField
                         sx={{ display: { xs: 'none', md: 'block' } }}
                         InputProps={{
-                            startAdornment: <SearchIcon />,
+                            startAdornment: <Box sx={{ width: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '10px' }}><SearchIcon /></Box>,
                             className: classes.textInput,
+                            classes: {
+                                root: classes.textInputRoot,
+                            }
                         }}
                         size={'small'}
                         variant={'outlined'}
@@ -105,10 +132,13 @@ function TopBar() {
                 </Box>
                 <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                     {navItems.map((item) => (
-                        <Button key={item} color={'secondary'}>
+                        <Button key={item} color={'inherit'} sx={{ marginRight: '10px' }}>
                             {item}
                         </Button>
                     ))}
+                    <Button variant={'contained'} color={'secondary'} startIcon={<Download />} size='small'>
+                        Descargar
+                    </Button>
                 </Box>
             </Toolbar>
         </AppBar>
