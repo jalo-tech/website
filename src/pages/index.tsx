@@ -27,6 +27,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     // #ffd700 70%,    /* amarillo dorado neón */
     // #fffacd 100%    /* amarillo claro tipo luz */
     // )`,
+  //   background: `linear-gradient(
+  //     135deg,
+  // #fffce0 0%,     /* blanco cálido (luz suave de entrada) */
+  // #ffe500 35%,    /* amarillo JALO (protagonista) */
+  // #ffd000 55%,    /* dorado suave (transición cálida) */
+  // #ffba00 75%,    /* naranja miel ligero */
+  // #fff0b3 100%    /* amarillo pastel (salida suave) */
+  //   )`,
     backgroundColor: '#FFE501',
     [theme.breakpoints.up('md')]: {
       borderRadius: '16px',
@@ -43,10 +51,26 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
   },
   heroImageContainer: {
-    display: 'grid',
-    placeItems: 'center',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: 40,
     height: '100%',
+    width: '100%',
+    overflowX: 'scroll',
+  },
+  heroImageScrollContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginLeft: 'calc(50vw + 75px)',
+    [theme.breakpoints.up('md')]: {
+      marginLeft: 0,
+    },
+  },
+  mockup: {
+    width: '250px',
+    margin: '10px',
   },
   heroImageSide: {
     width: '100%',
@@ -62,6 +86,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '100%',
     height: 'fit-content',
     backgroundColor: 'rgb(255, 255, 255, 0.3)',
+    backdropFilter: 'blur(10px)',
+    borderTop: '1px solid rgba(0,0,0,0.1)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -102,7 +128,7 @@ export default function Home() {
                     <Typography variant={'h2'} style={{ fontWeight: 'bold', fontSize: '4rem' }}>
                       Todo plan inicia con <span style={{ fontFamily: 'Delius Swash Caps' }}>JALO</span>
                     </Typography>
-                    <Typography sx={{ fontSize: '1.5rem', fontWeight: '500' }}>
+                    <Typography sx={{ fontSize: '1.6rem', fontWeight: '500' }}>
                       Empieza a conectar con tus amigos y aventuras de la forma más fácil e inteligente. Descarga la app y organiza tus salidas ya.
                     </Typography>
                     <Box>
@@ -117,7 +143,11 @@ export default function Home() {
             <Grid item xs={12} md={6}>
               <Box className={classes.heroImageContainer}>
                 {/* <Box className={classes.heroImageSide} /> */}
-                <ImageStack />
+                {/*<ImageStack />*/}
+                <Box className={classes.heroImageScrollContainer}>
+                  <img src={'/mockups/jalo-first-view-free-mockup.png'} className={classes.mockup}/>
+                  <img src={'/mockups/jalo-second-view-mockup.png'} className={classes.mockup}/>
+                </Box>
               </Box>
             </Grid>
             <Grid item xs={12}>

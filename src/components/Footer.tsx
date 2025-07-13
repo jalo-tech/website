@@ -21,7 +21,7 @@ const Footer = () => {
                 <Stack spacing={2}>
                     <Toolbar variant={'regular'}>
                         <Typography sx={{ flexGrow: 1 }}>
-                            Jalo Tech S.A.S © 2024
+                            Jalo Tech S.A.S © 2025
                         </Typography>
                         <Stack spacing={2} direction={'row'}>
                             <IconButton>
