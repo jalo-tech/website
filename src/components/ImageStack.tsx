@@ -2,9 +2,9 @@ import { Box, Card, CardMedia, Theme } from '@mui/material';
 import {makeStyles} from "@mui/styles";
 
 const images = [
-  '/friends5.webp', // Imagen principal
+  '/friends4.webp', // Imagen principal
+  '/friends5.webp',
   '/friends.jpg',
-  '/friends4.webp',
 ];
 
 const useStyles = makeStyles((theme: Theme) => ({
