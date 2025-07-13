@@ -8,18 +8,28 @@ import Toolbar from "@mui/material/Toolbar";
 import Download from "@mui/icons-material/Download";
 import Footer from '@/components/Footer';
 import Image from "next/image";
+import ImageStack from "@/components/ImageStack";
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
-    backgroundColor: theme.palette.primary.main,
+    //backgroundColor: theme.palette.primary.main,
   },
   hero: {
     height: 'fit-content',
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    // backgroundColor: 'rgba(255, 255, 255, 0.3)',
     borderRadius: 0,
     overflow: 'hidden',
+    // backgroundColor: 'rgba(255, 229, 0, 0.3)',
+    // background: `linear-gradient(
+    //   135deg,
+    // #ffff80 0%,     /* amarillo pastel eléctrico */
+    // #ffe500 40%,    /* amarillo base vibrante */
+    // #ffd700 70%,    /* amarillo dorado neón */
+    // #fffacd 100%    /* amarillo claro tipo luz */
+    // )`,
+    backgroundColor: '#FFE501',
     [theme.breakpoints.up('md')]: {
-      borderRadius: '16px 16px 0 0',
+      borderRadius: '16px',
     }
   },
   heroInfoSide: {
@@ -29,8 +39,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     [theme.breakpoints.up('md')]: {
-      height: '70vh',
+      height: '75vh',
     }
+  },
+  heroImageContainer: {
+    display: 'grid',
+    placeItems: 'center',
+    padding: 40,
+    height: '100%',
   },
   heroImageSide: {
     width: '100%',
@@ -38,20 +54,22 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundImage: 'url(/friends4.webp)',
+    borderRadius: '16px',
   },
   heroBannerSide: {
     minHeight: '25vh',
     padding: '5vh',
     width: '100%',
     height: 'fit-content',
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    backgroundColor: 'rgb(255, 255, 255, 0.3)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    borderRadius: '0 0 16px 16px',
+    borderRadius: 0,
     [theme.breakpoints.up('md')]: {
       padding: 5,
+      borderRadius: '0 0 16px 16px',
     },
   },
   section2Card: {
@@ -77,9 +95,9 @@ export default function Home() {
       <Stack width={'100%'} sx={{ p: { xs: 0, md: 5 }}} spacing={15}>
         <Box className={classes.hero}>
           <Grid container>
-            <Grid item xs={12} md={5}>
+            <Grid item xs={12} md={6}>
               <Box className={classes.heroInfoSide}>
-                <Box sx={{ width: { xs: '90%', md: '65%' }, height: 'fit-content', textAlign: { xs: 'center', md: 'left' } }}>
+                <Box sx={{ width: { xs: '90%', md: '70%' }, height: 'fit-content', textAlign: { xs: 'center', md: 'left' } }}>
                   <Stack spacing={4}>
                     <Typography variant={'h2'} style={{ fontWeight: 'bold', fontSize: '4rem' }}>
                       Todo plan inicia con <span style={{ fontFamily: 'Delius Swash Caps' }}>JALO</span>
@@ -88,7 +106,7 @@ export default function Home() {
                       Empieza a conectar con tus amigos y aventuras de la forma más fácil e inteligente. Descarga la app y organiza tus salidas ya.
                     </Typography>
                     <Box>
-                      <Button variant={'contained'} color={'secondary'} startIcon={<Download />}>
+                      <Button variant={'outlined'} color={'secondary'} startIcon={<Download />}>
                         Descarga la App
                       </Button>
                     </Box>
@@ -96,15 +114,18 @@ export default function Home() {
                 </Box>
               </Box>
             </Grid>
-            <Grid item xs={12} md={7}>
-              <Box className={classes.heroImageSide} />
+            <Grid item xs={12} md={6}>
+              <Box className={classes.heroImageContainer}>
+                {/* <Box className={classes.heroImageSide} /> */}
+                <ImageStack />
+              </Box>
             </Grid>
             <Grid item xs={12}>
               <Box className={classes.heroBannerSide}>
                 <Stack spacing={10} direction={{ xs: 'column', md: 'row' }}>
                   <Box sx={{ width: '350px' }}>
                     <Typography variant={'h3'} sx={{ fontWeight: '500' }} gutterBottom>#1</Typography>
-                    <Typography variant={'h6'}>Primer red social enfocada en tus aventuras</Typography>
+                    <Typography variant={'h6'}>Primer red social mexicana enfocada en tus aventuras</Typography>
                   </Box>
                   <Box sx={{ width: '350px' }}>
                     <Typography variant={'h3'} sx={{ fontWeight: '500' }} gutterBottom>+1000</Typography>
@@ -112,7 +133,7 @@ export default function Home() {
                   </Box>
                   <Box sx={{ width: '350px' }}>
                     <Typography variant={'h3'} sx={{ fontWeight: '500' }} gutterBottom>3 pasos</Typography>
-                    <Typography variant={'h6'}>Es lo que necesitas para definir un plan con tus amigos :)</Typography>
+                    <Typography variant={'h6'}>Es lo único que necesitas para definir un plan con tus amigos :)</Typography>
                   </Box>
                 </Stack>
               </Box>

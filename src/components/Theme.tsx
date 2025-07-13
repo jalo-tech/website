@@ -75,10 +75,10 @@ const theme = createTheme({
                             borderRadius: '50px'
                         },
                         '&:hover fieldset': {
-                            borderColor: 'rgba(255, 255, 255, 0.5)', // Color del borde al pasar el ratón por encima
+                            borderColor: 'rgba(0, 0, 0, 0.5)', // Color del borde al pasar el ratón por encima
                         },
                         '&.Mui-focused fieldset': {
-                            borderColor: 'rgba(255, 255, 255, 0.7)', // Color del borde cuando el TextField está enfocado
+                            borderColor: 'rgba(0, 0, 0, 0.7)', // Color del borde cuando el TextField está enfocado
                         },
                     },
                 },

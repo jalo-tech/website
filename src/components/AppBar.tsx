@@ -24,28 +24,38 @@ import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) => ({
     appBar: {
-        backgroundColor: '#000',
-        borderBottom: '1px solid rgba(0, 0, 0, 0.5)',
-        color: '#fff',
+        backgroundColor: 'white',
+        //borderBottom: '1px solid rgba(0, 0, 0, 0.5)',
+        color: '#000',
         '&:hover': {
             // backgroundColor: 'rgba(255, 255, 255, 0.3)',
         }
     },
     appBarActive: {
-        backgroundColor: '#111',
-        color: '#fff',
+        // backgroundColor: '#111',
+        // color: '#fff',
+        boxShadow: 'rgba(0, 0, 0, 0.06) 0px 2px 5px 0px',
     },
     logo: {
+        width: '50px',
+        height: '50px',
+        backgroundColor: 'rgb(251, 230, 77)',
+        borderRadius: '50%',
+        border: '1px solid #555',
+        display: 'grid',
+        placeItems: 'center',
+    },
+    logoTitle: {
         fontFamily: "Delius Swash Caps",
         fontWeight: "bold",
         fontStyle: 'normal',
-        fontSize: '25px',
+        fontSize: '18px',
     },
     textInput: {
         width: '35vw',
-        color: '#fff',
+        color: '#000',
         '& fieldset': {
-            border: '1px solid rgba(255, 255, 255, 0.4)',
+            border: '1px solid rgba(0, 0, 0, 0.4)',
             borderRadius: '50px'
         },
     },
@@ -78,9 +88,10 @@ function TopBar({ window }: ElevationScrollProps) {
 
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-            <Typography variant="h6" sx={{ my: 2 }} className={classes.logo}>
+            {/* <Typography variant="h6" sx={{ my: 2 }} className={classes.logo}>
                 Jalo
-            </Typography>
+            </Typography> */}
+            <img src={'/logo.svg'} className={classes.logo} />
             <Divider />
             <List>
                 {navItems.map((item) => (
@@ -98,7 +109,7 @@ function TopBar({ window }: ElevationScrollProps) {
         <AppBar component="nav" elevation={trigger ? 4 : 0} className={clsx(classes.appBar, {
             [classes.appBarActive]: trigger,
         })}>
-            <Toolbar variant={'regular'} sx={{ display: 'flex', justifyContent: 'space-between', margin: { md: '0 100px', sm: '0' } }}>
+            <Toolbar variant={'regular'} sx={{ display: 'flex', justifyContent: 'space-between', margin: { md: '0 100px', sm: '0' }, height: '80px' }}>
                 <IconButton
                     color="inherit"
                     aria-label="open drawer"
@@ -108,12 +119,14 @@ function TopBar({ window }: ElevationScrollProps) {
                 >
                     <MenuIcon />
                 </IconButton>
-                <Typography
-                    variant="h6"
-                    className={classes.logo}
-                >
-                    Jalo
-                </Typography>
+                <Box className={classes.logo}>
+                    <Typography
+                        variant="h6"
+                        className={classes.logoTitle}
+                    >
+                        Jalo
+                    </Typography>
+                </Box>
                 <Box>
                     <TextField
                         sx={{ display: { xs: 'none', md: 'block' } }}
@@ -136,7 +149,7 @@ function TopBar({ window }: ElevationScrollProps) {
                             {item}
                         </Button>
                     ))}
-                    <Button variant={'contained'} color={'secondary'} startIcon={<Download />} size='small'>
+                    <Button variant={'contained'} color={'primary'} startIcon={<Download />} size='small'>
                         Descargar
                     </Button>
                 </Box>
