@@ -10,7 +10,7 @@ const images = [
 const useStyles = makeStyles((theme: Theme) => ({
  container: {
     position: 'relative',
-    width: '100%',  // full width on mobile
+    width: '95%',  // full width on mobile
     height: 280,    // smaller height on mobile
     [theme.breakpoints.up('sm')]: {
       width: 570,
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   cardBase: {
     position: 'absolute',
     top: 0,
-    width: '100%',
+    width: '95%',
     height: 280,
     borderRadius: 12,
     overflow: 'hidden',

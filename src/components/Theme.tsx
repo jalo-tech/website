@@ -57,8 +57,9 @@ const theme = createTheme({
                     fontWeight: 'bold',
                     borderRadius: '50px',
                     minWidth: '100px',
-                    paddingLeft: '15px',
-                    paddingRight: '15px',
+                    padding: '8px',
+                    paddingLeft: '18px',
+                    paddingRight: '18px',
                     ...(ownerState.variant === 'contained' &&
                         ownerState.color === 'secondary' && {
                             color: '#fff',

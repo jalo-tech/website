@@ -21,6 +21,8 @@ import {useMediaQuery} from "@mui/system";
 import SearchIcon from "@mui/icons-material/Search";
 import Download from "@mui/icons-material/Download";
 import clsx from 'clsx';
+import CloseIcon from '@mui/icons-material/Close';
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const useStyles = makeStyles((theme: Theme) => ({
     appBar: {
@@ -60,10 +62,15 @@ const useStyles = makeStyles((theme: Theme) => ({
         },
     },
     textInputRoot: {
+    },
+    logoContainer: {
+    },
+    listItem: {
+        height: '15vh',
     }
 }));
 
-const drawerWidth = 240;
+const drawerWidth = '100%';
 const navItems = ['Inicio', 'Acerca de', 'Contacto'];
 
 interface ElevationScrollProps {
@@ -86,18 +93,38 @@ function TopBar({ window }: ElevationScrollProps) {
         setMobileOpen((prevState) => !prevState);
     };
 
+    const logo = <Box className={classes.logo}>
+        <Typography
+            variant="h6"
+            className={classes.logoTitle}
+        >
+            Jalo
+        </Typography>
+    </Box>;
+
     const drawer = (
-        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-            {/* <Typography variant="h6" sx={{ my: 2 }} className={classes.logo}>
-                Jalo
-            </Typography> */}
-            <img src={'/logo.svg'} className={classes.logo} />
-            <Divider />
+        <Box sx={{ textAlign: 'center' }}>
+            <Box sx={{ width: '100%', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                <IconButton
+                    size={'large'}
+                    onClick={handleDrawerToggle}
+                    sx={{ marginTop: 3, marginRight: 3, }}
+                >
+                    <CloseIcon fontSize={'large'}/>
+                </IconButton>
+            </Box>
             <List>
                 {navItems.map((item) => (
                     <ListItem key={item} disablePadding>
-                        <ListItemButton sx={{ textAlign: 'center' }}>
-                            <ListItemText primary={item} />
+                        <ListItemButton sx={{ textAlign: 'center' }} className={classes.listItem}>
+                            <ListItemText
+                                primary={item}
+                                primaryTypographyProps={{
+                                    fontSize: '1.8rem',
+                                    fontWeight: 'bold',
+                                    textTransform: 'uppercase'
+                                }}
+                            />
                         </ListItemButton>
                     </ListItem>
                 ))}
@@ -109,24 +136,18 @@ function TopBar({ window }: ElevationScrollProps) {
         <AppBar component="nav" elevation={trigger ? 4 : 0} className={clsx(classes.appBar, {
             [classes.appBarActive]: trigger,
         })}>
-            <Toolbar variant={'regular'} sx={{ display: 'flex', justifyContent: 'space-between', margin: { md: '0 100px', sm: '0' }, height: '80px' }}>
+            <Toolbar variant={'regular'} sx={{ display: 'flex', justifyContent: 'space-between', margin: { md: '0 70px', sm: '0' }, height: { md: '80px' } }}>
                 <IconButton
                     color="inherit"
                     aria-label="open drawer"
                     edge="start"
+                    size="large"
                     onClick={handleDrawerToggle}
                     sx={{ mr: 2, display: { md: 'none', xs: 'block' } }}
                 >
-                    <MenuIcon />
+                    <MenuIcon fontSize={'large'}/>
                 </IconButton>
-                <Box className={classes.logo}>
-                    <Typography
-                        variant="h6"
-                        className={classes.logoTitle}
-                    >
-                        Jalo
-                    </Typography>
-                </Box>
+                {isMd && logo}
                 <Box>
                     <TextField
                         sx={{ display: { xs: 'none', md: 'block' } }}
@@ -149,6 +170,7 @@ function TopBar({ window }: ElevationScrollProps) {
                             {item}
                         </Button>
                     ))}
+                    <LanguageSwitcher />
                     <Button variant={'contained'} color={'primary'} startIcon={<Download />} size='small'>
                         Descargar
                     </Button>
@@ -165,7 +187,10 @@ function TopBar({ window }: ElevationScrollProps) {
                 }}
                 sx={{
                     display: { xs: 'block', sm: 'none' },
-                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                    '& .MuiDrawer-paper': {
+                        boxSizing: 'border-box',
+                        width: drawerWidth,
+                    },
                 }}
             >
                 {drawer}
