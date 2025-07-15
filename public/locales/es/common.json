@@ -1,4 +1,18 @@
 {
+  "homeTitle": "Inicio",
   "heroTitle": "Todo plan inicia con",
-  "heroDescription": "Empieza a conectar con tus amigos y aventuras de la forma más fácil e inteligente. Descarga la app y organiza tus salidas ya."
+  "heroDescription": "Empieza a conectar con tus amigos y aventuras de la forma más fácil e inteligente. Descarga la app y organiza tus salidas ya.",
+  "heroDownloadButton": "Descarga la App",
+  "heroLearnMoreButton": "Aprende más",
+  "heroBannerInsight1": "Primer red social mexicana enfocada en tus aventuras",
+  "heroBannerInsight2": "Cuenta con más de 1000 lugares, eventos y actividades que explorar",
+  "heroBannerInsight3": "Es lo único que necesitas para definir un plan con tus amigos :)",
+  "heroBannerInsight3Title": "3 pasos",
+  "appBarOptionHome": "Inicio",
+  "appBarOptionAbout": "Acerca de",
+  "appBarOptionContact": "Contacto",
+  "appBarDownload": "Descargar",
+  "appBarSearch": "Busca",
+  "whatIsThisSectionTitle1": "Olvídate de los grupos de WhatsApp",
+  "whatIsThisSectionTitle2": "Organiza salidas con tus amigos en 3 simples pasos."
 }

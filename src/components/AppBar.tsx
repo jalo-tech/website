@@ -22,7 +22,10 @@ import SearchIcon from "@mui/icons-material/Search";
 import Download from "@mui/icons-material/Download";
 import clsx from 'clsx';
 import CloseIcon from '@mui/icons-material/Close';
+import CancelIcon from '@mui/icons-material/Cancel';
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import {useState} from "react";
+import {useTranslation} from "next-i18next";
 
 const useStyles = makeStyles((theme: Theme) => ({
     appBar: {
@@ -56,6 +59,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     textInput: {
         width: '35vw',
         color: '#000',
+        fontWeight: 'bold',
         '& fieldset': {
             border: '1px solid rgba(0, 0, 0, 0.4)',
             borderRadius: '50px'
@@ -71,7 +75,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 const drawerWidth = '100%';
-const navItems = ['Inicio', 'Acerca de', 'Contacto'];
+// Inicio, Acerca de, Contacto
+const navItems = ['appBarOptionHome', 'appBarOptionAbout', 'appBarOptionContact'];
 
 interface ElevationScrollProps {
     window?: () => Window;
@@ -81,7 +86,9 @@ function TopBar({ window }: ElevationScrollProps) {
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const classes = useStyles();
     const theme = useTheme();
+    const { t } = useTranslation();
     const isMd = useMediaQuery(theme.breakpoints.up('md'));
+    const [searchText, setSearchText] = useState('');
 
     const trigger = useScrollTrigger({ 
         disableHysteresis: true,
@@ -91,6 +98,10 @@ function TopBar({ window }: ElevationScrollProps) {
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
+    };
+
+    const clearText = () => {
+        setSearchText('');
     };
 
     const logo = <Box className={classes.logo}>
@@ -150,9 +161,18 @@ function TopBar({ window }: ElevationScrollProps) {
                 {isMd && logo}
                 <Box>
                     <TextField
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
                         sx={{ display: { xs: 'none', md: 'block' } }}
                         InputProps={{
-                            startAdornment: <Box sx={{ width: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '10px' }}><SearchIcon /></Box>,
+                            startAdornment: !searchText && <Box sx={{ width: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '10px' }}>
+                              <IconButton size={'small'}>
+                                <SearchIcon fontSize={'small'} />
+                              </IconButton>
+                            </Box>,
+                            endAdornment: searchText && <IconButton size={'small'} onClick={clearText}>
+                                <CancelIcon fontSize={'small'} />
+                            </IconButton>,
                             className: classes.textInput,
                             classes: {
                                 root: classes.textInputRoot,
@@ -160,19 +180,19 @@ function TopBar({ window }: ElevationScrollProps) {
                         }}
                         size={'small'}
                         variant={'outlined'}
-                        placeholder={'Busca'}
+                        placeholder={t('appBarSearch')}
                         name={'search'}
                     />
                 </Box>
                 <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                     {navItems.map((item) => (
                         <Button key={item} color={'inherit'} sx={{ marginRight: '10px' }}>
-                            {item}
+                            {t(item)}
                         </Button>
                     ))}
                     <LanguageSwitcher />
                     <Button variant={'contained'} color={'primary'} startIcon={<Download />} size='small'>
-                        Descargar
+                        {t('appBarDownload')}
                     </Button>
                 </Box>
             </Toolbar>

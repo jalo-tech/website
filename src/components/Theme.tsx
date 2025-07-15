@@ -9,7 +9,7 @@ const theme = createTheme({
             main: '#FFE500', // Yellow
         },
         secondary: {
-            main: '#4A4A4A', // Gray
+            main: '#111', // Gray
         },
         success: {
             main: '#388e3c', // Green
@@ -70,13 +70,17 @@ const theme = createTheme({
         MuiTextField: {
             styleOverrides: {
                 root: {
+                    color: '#000',
                     '& .MuiOutlinedInput-root': {
                         '& fieldset': {
                             // border: '2px solid rgba(255, 255, 255, 0.5)',
-                            borderRadius: '50px'
+                            borderRadius: '50px',
+                            border: '1px solid rgba(0, 0, 0, 0.5)',
+                            opacity: '50',
                         },
                         '&:hover fieldset': {
                             borderColor: 'rgba(0, 0, 0, 0.5)', // Color del borde al pasar el ratón por encima
+                            opacity: '70',
                         },
                         '&.Mui-focused fieldset': {
                             borderColor: 'rgba(0, 0, 0, 0.7)', // Color del borde cuando el TextField está enfocado

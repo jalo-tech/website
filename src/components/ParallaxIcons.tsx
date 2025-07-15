@@ -14,13 +14,9 @@ export default function ParallaxIcons() {
         <ParallaxProvider>
             <Box
                 sx={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
                     width: '100%',
                     height: '100vh',
                     pointerEvents: 'none',
-                    zIndex: 1, // debajo del texto principal si este es 2 o más
                 }}
             >
                 {icons.map(({ src, top, left, speed }, index) => (

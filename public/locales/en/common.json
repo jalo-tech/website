@@ -1,4 +1,18 @@
 {
+  "homeTitle": "Home",
   "heroTitle": "Every plan starts with",
-  "heroDescription": "Start connecting with your friends and adventures in the easiest and smartest way. Download the app and plan your outings now."
+  "heroDescription": "Start connecting with your friends and adventures in the easiest and smartest way. Download the app and plan your outings now.",
+  "heroDownloadButton": "Download the App",
+  "heroLearnMoreButton": "Learn more",
+  "heroBannerInsight1": "The first Mexican social network focused on your adventures",
+  "heroBannerInsight2": "It features over 1,000 places, events, and activities to explore",
+  "heroBannerInsight3": "It's the only thing you need to make plans with your friends :)",
+  "heroBannerInsight3Title": "3 steps",
+  "appBarOptionHome": "Home",
+  "appBarOptionAbout": "About Us",
+  "appBarOptionContact": "Contact",
+  "appBarDownload": "Download",
+  "appBarSearch": "Search",
+  "whatIsThisSectionTitle1": "Forget about WhatsApp groups",
+  "whatIsThisSectionTitle2": "Plan outings with your friends in 3 simple steps."
 }
