@@ -14,5 +14,11 @@
   "appBarDownload": "Descargar",
   "appBarSearch": "Busca",
   "whatIsThisSectionTitle1": "Olvídate de los grupos de WhatsApp",
-  "whatIsThisSectionTitle2": "Organiza salidas con tus amigos en 3 simples pasos."
+  "whatIsThisSectionTitle2": "Organiza salidas con tus amigos en 3 simples pasos.",
+  "step1Title": "Invita a tus amigos",
+  "step1Description": "Crea tu lista de invitados con la ayuda de nuestro algoritmo de sugerencias basándose en los gustos de todos tus amigos.",
+  "step2Title": "Propón un lugar",
+  "step2Description": "Elige el mejor lugar para tu salida con la ayuda de nuestro algoritmo de recomendación basado en tus gustos y los de tus amigos.",
+  "step3Title": "Define una fecha",
+  "step3Description": "Selecciona una fecha que cuadre con el calendario de todos los invitados."
 }

@@ -14,5 +14,11 @@
   "appBarDownload": "Download",
   "appBarSearch": "Search",
   "whatIsThisSectionTitle1": "Forget about WhatsApp groups",
-  "whatIsThisSectionTitle2": "Plan outings with your friends in 3 simple steps."
+  "whatIsThisSectionTitle2": "Plan outings with your friends in 3 simple steps.",
+  "step1Title": "Invite your friends",
+  "step1Description": "Create your guest list with the help of our suggestion algorithm based on your friends’ preferences.",
+  "step2Title": "Suggest a place",
+  "step2Description": "Choose the best spot for your outing with help from our recommendation engine based on your group’s interests.",
+  "step3Title": "Set a date",
+  "step3Description": "Pick a date that works with everyone’s calendar."
 }
